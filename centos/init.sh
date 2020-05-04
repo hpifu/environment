@@ -15,7 +15,7 @@ function warn() {
 }
 
 function main() {
-    for module in $(ls); do
+    for module in $(ls -d */); do
         cd ${workroot}
         trac "==================================="
         trac "do ${module}"

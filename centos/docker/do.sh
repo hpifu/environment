@@ -22,7 +22,7 @@ function check() {
 # 添加docker用户组，以后用户需加入这个组
 function add_group() {
     grep "^docker:" /etc/group >& /dev/null ||
-        groupadd docker
+    groupadd docker
 }
 
 function install() {

@@ -27,5 +27,9 @@ function config() {
     echo "export zip_key=$1" >> config.sh
 }
 
+if [ $# -lt 1 ]; then
+    warn "请传入rsa解压密码"
+fi
+
 config $1
 main

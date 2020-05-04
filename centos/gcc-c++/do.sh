@@ -15,17 +15,12 @@ function warn() {
 }
 
 function check() {
-    hash htop 2>/dev/null
-}
-
-function install_dependence() {
-    sh ../epel/do.sh
+    hash g++ 2>/dev/null
 }
 
 function install() {
     check && trac "${module} alread exist. skip..." || {
-        install_dependence &&
-        yum install -y htop &&
+        yum install -y gcc-c++ &&
         info "${module} install success" ||
         warn "${module} install failed"
     }

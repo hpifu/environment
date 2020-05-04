@@ -20,9 +20,13 @@ function check() {
     hash ansible 2>/dev/null
 }
 
+function install_dependence() {
+    sh ../epel/do.sh
+}
+
 function install() {
     check && trac "${module} alread exist. skip..." || {
-        yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &&
+        install_dependence &&
         yum install -y ansible &&
         info "${module} install success" ||
         warn "${module} install failed"

@@ -21,7 +21,7 @@ function check() {
 function install() {
     check && trac "${module} alread exist. skip..." || {
         yum install -y zsh &&
-        sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &&
+        sh oh-my-zsh.sh &&
         info "${module} install success" ||
         warn "${module} install failed"
     }

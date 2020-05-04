@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# http://www.ansible.com.cn/
-
 module=$(basename $(pwd))
 
 function trac() {
@@ -17,7 +15,7 @@ function warn() {
 }
 
 function check() {
-    hash ansible 2>/dev/null
+    hash htop 2>/dev/null
 }
 
 function install_dependence() {
@@ -27,7 +25,7 @@ function install_dependence() {
 function install() {
     check && trac "${module} alread exist. skip..." || {
         install_dependence &&
-        yum install -y ansible &&
+        yum install -y htop &&
         info "${module} install success" ||
         warn "${module} install failed"
     }

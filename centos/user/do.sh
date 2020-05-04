@@ -15,24 +15,28 @@ function warn() {
 }
 
 function check() {
-    hash docker 2>/dev/null
+    id work >& /dev/null
 }
 
 # 解决docker命令报Got permission denied ... unix:///var/run/docker.sock ...
-# 添加docker用户组，以后用户需加入这个组
-function add_group() {
-    grep "^docker:" /etc/group >& /dev/null ||
-        groupadd docker
+function add_group_docker() {
+    grep "^docker:" /etc/group >& /dev/null || 
+    groupadd docker
+}
+
+function add_ssh() {
+    mkdir -p /home/work/.ssh &&
+    unzip -P $zip_key rsa.zip
+    cp id_rsa.pub /home/work/.ssh/authorized_keys
 }
 
 function install() {
     check && trac "${module} alread exist. skip..." || {
-        yum remove docker docker-common docker-selinux docker-engine -y &&
-        yum install -y yum-utils device-mapper-persistent-data lvm2 &&
-        yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo &&
-        yum makecache &&
-        yum install -y docker-ce docker-ce-cli containerd.io &&
-        add_group &&
+        useradd -m work &&
+        gpasswd -a work wheel &&
+        add_group_docker &&
+        gpasswd -a work docker &&
+        add_ssh &&
         info "${module} install success" ||
         warn "${module} install failed"
     }
@@ -42,4 +46,5 @@ function main() {
     install
 }
 
+source ../config.sh
 main

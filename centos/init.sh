@@ -23,4 +23,9 @@ function main() {
     done
 }
 
+function config() {
+    echo "export zip_key=$1" >> config.sh
+}
+
+config $1
 main

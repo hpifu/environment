@@ -22,7 +22,7 @@ function check() {
 
 function install() {
     check && trac "${module} alread exist. skip..." || {
-        yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &&
+        yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm &&
         yum install -y ansible &&
         info "${module} install success" ||
         warn "${module} install failed"

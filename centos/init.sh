@@ -29,6 +29,7 @@ function config() {
 
 if [ $# -lt 1 ]; then
     warn "请传入rsa解压密码"
+    exit 1
 fi
 
 config $1

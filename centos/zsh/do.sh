@@ -45,7 +45,7 @@ function check_zshrc() {
 
 function install_zshrc() {
     check_zshrc && trac "${module} zshrc no diff. skip..." || {
-        sh oh-my-zsh.sh &&
+        cp zshrc ~/.zshrc &&
         info "${module} zshrc update success" ||
         warn "${module} zshrc update failed"
     }
@@ -54,6 +54,7 @@ function install_zshrc() {
 function install() {
     install_zsh
     install_oh_my_zsh
+    install_zshrc
 }
 
 function main() {

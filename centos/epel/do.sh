@@ -18,6 +18,8 @@ function check() {
     test -e /etc/yum.repos.d/epel.repo
 }
 
+# http://mirrors.aliyun.com/repo/epel-7.repo 只适用于CentOS 7和RedHat 7。
+# 若要自动适配操作系统，需要yum -y install epel-release。
 function install() {
     check && trac "${module} alread exist. skip..." || {
         wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo &&

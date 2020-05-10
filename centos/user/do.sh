@@ -26,8 +26,10 @@ function add_group_docker() {
 
 function add_ssh() {
     mkdir -p /home/work/.ssh &&
-    unzip -P $zip_key rsa.zip
-    cp id_rsa.pub /home/work/.ssh/authorized_keys
+    chmod 700 /home/work/.ssh &&
+    unzip -P $zip_key rsa.zip &&
+    cp id_rsa.pub /home/work/.ssh/authorized_keys &&
+    chmod 600 /home/work/.ssh/authorized_keys
 }
 
 function install() {
